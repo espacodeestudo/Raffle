@@ -30,18 +30,29 @@ function generateTheme (){
     }
     themeselect = themesWorks[0];
     themeContainer.textContent= themeselect
+    TheMeselected.push(themeselect);
+    localStorage.setItem("Theme", JSON.stringify(TheMeselected) )
     if(TheMeselected.includes(themeselect)){
         
-        TheMeselected.filter(item => item !== TheMeselected)
+        TheMeselected.filter((item, element, array) => array.indexOf(item) === element)
+        themeselect = TheMeselected[0]
     }
-    else{
-        TheMeselected.push(themeselect);
-        localStorage.setItem("Theme", JSON.stringify(TheMeselected) )
+    
+       
+       
 
         if(TheMeselected.length === themesWorks.length){
             themeContainer.textContent= "Fim"
+            TheMeselected = []
+            localStorage.setItem("Theme", JSON.stringify(TheMeselected))
+
+             return themeselect= "";
+           
         }
-    }
+    
+
+
+    console.log(TheMeselected.length, themesWorks.length)
     
 
     
